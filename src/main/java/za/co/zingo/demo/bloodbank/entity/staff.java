@@ -3,6 +3,11 @@ package za.co.zingo.demo.bloodbank.entity;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * mazingo mbatha
+ */
+
+
 public class staff {
 
     private  Long staffId;
