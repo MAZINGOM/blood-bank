@@ -1,5 +1,9 @@
 package za.co.zingo.demo.bloodbank.entity;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -7,9 +11,11 @@ import java.util.Set;
  * mazingo mbatha
  */
 
-
+@Entity
+@Table(name ="STAFF")
 public class staff {
 
+    @Id
     private  Long staffId;
     private String firstName;
     private String lastName;

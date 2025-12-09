@@ -1,12 +1,17 @@
 package za.co.zingo.demo.bloodbank.entity;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import za.co.zingo.demo.bloodbank.entity.enums.bloodType;
 
 import java.time.LocalDate;
 import java.util.Date;
-
+@Entity
+@Table(name = "Donor")
 public class donor {
 
+    @Id
     private Long donorId;
     private String firstName;
     private String lastName;
