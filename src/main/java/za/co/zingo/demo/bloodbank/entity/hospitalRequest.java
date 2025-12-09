@@ -1,19 +1,47 @@
 package za.co.zingo.demo.bloodbank.entity;
 
+import jakarta.persistence.*;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 import za.co.zingo.demo.bloodbank.entity.enums.bloodComponent;
 import za.co.zingo.demo.bloodbank.entity.enums.requestStatus;
 
 import java.time.LocalDateTime;
 
+@Entity
+@Table(name ="HOSPITAL_REQUEST")
 public class hospitalRequest {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "request_id")
     private  Long requestId;
+
+    @Column(name = "hospital_name", nullable = false, length = 255)
     private String hospitalName;
+
+    @Column(name = "requested_blood_type", nullable = false, length = 5)
     private String requestedBloodType;
+
+    @Enumerated(EnumType.STRING) // Stores the enum name as a string in the DB
+    @Column(name = "requested_component", nullable = false)
     private bloodComponent bloodComponent;
+
+    @Column(name = "requested_units", nullable = false)
     private Integer requestedUnits;
+
+    @Column(name = "request_date", nullable = false)
     private LocalDateTime requestedDate;
+
+    @Enumerated(EnumType.STRING) // Stores the enum name as a string in the DB
+    @Column(name = "status", nullable = false)
     private requestStatus requestStatus;
+
+
+    // --- Relationship with Staff (as per ER diagram) ---
+    // A staff member can handle many requests, a request is handled by one staff member
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "staff_id")
     private staff  staff;
 
     public hospitalRequest() {
